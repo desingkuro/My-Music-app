@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
         path:'login',
-        loadComponent: ()=> import('./pages/authentication/login.component')
-    }
+        loadChildren: ()=> import('./pages/authentication/login.component'),
+    },
+    { path: 'home', component: AppComponent },
+    { path: '**', redirectTo: 'home' }
 ];
