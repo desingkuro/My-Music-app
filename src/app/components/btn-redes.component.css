@@ -1,0 +1,13 @@
+a{
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+    border-radius: 20px;
+    border: 1px solid #949494;
+  }
+  a>div{
+    width: 70%;
+  }

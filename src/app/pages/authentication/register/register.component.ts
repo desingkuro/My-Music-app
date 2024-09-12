@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { BtnRedesComponent } from '../../../components/btn-redes.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [BtnRedesComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

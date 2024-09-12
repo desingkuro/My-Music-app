@@ -18,18 +18,9 @@
         <p>o</p>
       </div>
       <div [className]="'container-login-redes'">
-        <a>
-          <img src="googleIcon.svg" alt="" />
-          <span>Registrarte con Google</span>
-        </a>
-        <a>
-          <img src="facebookIcon.svg" alt="" />
-          <span>Registrarte con Google</span>
-        </a>
-        <a>
-          <img src="appleIcon.svg" alt="" />
-          <span>Registrarte con Google</span>
-        </a>
+        <app-btn-redes [texto]="'Registrarte con Google'" [red]="'google'"/>
+        <app-btn-redes [texto]="'Registrarte con Facebook'" [red]="'facebook'"/>
+        <app-btn-redes [texto]="'Registrarte con Apple'" [red]="'Apple'"/>
       </div>
     </div>
       <footer>
