@@ -9,5 +9,5 @@ a{
     border: 1px solid #949494;
   }
   a>div{
-    width: 70%;
+    min-width: 70%;
   }

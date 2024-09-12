@@ -1,8 +1,35 @@
 <section>
-    <main>
-        <header>
-            <img src="spotifyLogo.png" alt="icono spotify">
-            <h1>Inicia sesión en Spotify</h1>
-        </header>
-    </main>
+  <main>
+    <header>
+      <img src="spotifyLogo.png" alt="icono spotify" />
+      <h1>Inicia sesión en Spotify</h1>
+    </header>
+    <div>
+      <app-btn-redes [red]="'google'" [texto]="'Continuar con Google'" />
+      <app-btn-redes [red]="'facebook'" [texto]="'Continuar con Facebook'" />
+      <app-btn-redes [red]="'apple'" [texto]="'Continuar con Apple'" />
+      <app-btn-redes [red]="''" [texto]="'Continuar con Número de teléfono'" />
+    </div>
+    <form action="">
+      <label for=""> Email o nombre de usuario </label>
+      <input type="text" placeholder="Email o nombre de usuario" />
+      <label for=""> Contraseña </label>
+      <input type="text" placeholder="Contraseña" />
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <div [className]="'container-registro'">
+      <a href="">¿Has olvidado tu contraseña?</a>
+      <div>
+        <p>¿No tienes cuenta?</p>
+        <a href="">Regístrate en Spotify</a>
+      </div>
+    </div>
+  </main>
 </section>
+<footer>
+  <p>
+    This site is protected by reCAPTCHA and the Google
+    <a href="">Privacy Policy</a> and
+    <a href="">Terms of Service apply.</a>
+  </p>
+</footer>
