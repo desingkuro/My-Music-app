@@ -42,7 +42,7 @@ main > h1 {
   font-size: 2rem;
   text-align: center;
   text-wrap: balance;
-  max-width: 380px;
+  max-width: 324px;
 }
 
 form {
@@ -101,7 +101,7 @@ button:hover {
 }
 section > div {
   width: 100%;
-  max-width: 380px;
+  max-width: 324px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +128,7 @@ section>div::before{
 
 .divisor{
     position: absolute;
-    top: -10%;
+    top: -5%;
     background-color: #131313;
     height: 20px;
     width: 30px;
@@ -137,4 +137,56 @@ section>div::before{
     display: flex;
     z-index: 99;
 }
+
+.container-login-redes{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  gap: 10px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.container-login-redes>a{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 20px;
+  border: 1px solid #949494;
+}
+
+/***********Footer**************/
+footer{
+  width: 100%;
+  max-width: 324px;
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+footer>div{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  >p{
+    text-align: center;
+    color: #949494;
+  }
+}
+footer div:nth-of-type(2) p {
+  font-size: .7rem;
+}
+a{
+  color: #fff;
+}
+
 
