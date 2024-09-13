@@ -1,0 +1,27 @@
+section{
+    min-width: 320px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+}
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+nav{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
+}
+nav>img{
+    height: 40px;
+    width: auto;
+    filter: invert(1);
+}
