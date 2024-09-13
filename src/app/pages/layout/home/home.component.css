@@ -1,27 +1,217 @@
-section{
-    min-width: 320px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    background-color: #000000;
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
 }
-header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
+
+section {
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #000000;
+  flex-direction: column;
 }
-nav{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    height: 100%;
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
-nav>img{
-    height: 40px;
+
+/***logo principal****/
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+.large {
+  height: 40px;
+  width: auto;
+  filter: invert(1);
+}
+/***Contenedores nav del header****/
+.logo {
+  flex: 1;
+  justify-content: flex-start;
+  padding-left: 40px;
+}
+.searchContainer {
+  flex: 2;
+  height: 100%;
+}
+.adminNav {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/***barra de busqueda****/
+.btnHome {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background: #252525;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  > svg {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+  }
+}
+
+form {
+  height: 50px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #252525;
+  border-radius: 20px;
+  transition: all ease-in-out 0.3s;
+  border: 0.2px solid #363636;
+}
+form:hover {
+  cursor: pointer;
+  background-color: #3a3a3a;
+}
+form > button {
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: transparent;
+  border: none;
+  transition: all ease-in-out 0.4s;
+  > svg {
+    height: 30px;
+    width: 30px;
+    filter: invert(0.6);
+    transition: all ease-in-out 0.4s;
+  }
+}
+form:hover button > svg {
+  filter: invert(1);
+}
+form > input {
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  border-right: 2px solid #818181;
+  width: 350px;
+  font-size: 16px;
+  font-weight: 800;
+  outline: none;
+  cursor: pointer;
+  color: #818181;
+}
+form > a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > svg {
+    height: 35px;
+    width: 35px;
+    filter: invert(1);
+  }
+}
+
+/***nav user****/
+.adminNav > button {
+  height: 40px;
+  display: flex;
+  gap: 5px;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+
+  > span {
+    font-size: 16px;
+  }
+
+  > span > svg {
+    height: 20px;
     width: auto;
     filter: invert(1);
+  }
+}
+.adminNav > button:hover {
+  transform: scale(1.05);
+}
+.adminNav > button:hover span {
+  text-decoration: underline;
+}
+
+.adminNav>a{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    >svg{
+        height: 20px;
+        width: 20px;
+        filter: invert(1);
+    }
+}
+.adminNav>div{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a3a3a;
+    border-radius: 50%;
+    >span{
+        height: 40px;
+        width: 40px;
+        border-radius:50%;
+        background-color: #7c10d4;
+        font-weight: 800;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #eeeeee;
+    }
+}
+
+/**main**/
+main{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+aside{
+    flex: 1;
+    background-color: #252525;
+    border-radius: 10px;
+    height: 500px;
+}
+.section-main{
+    background-color: #252525;
+    flex:2;
+    min-height: 500px;
+    border-radius: 10px;
+}
+/**Reproductor**/
+footer{
+    width: 100%;
+    height: 100px;
 }
