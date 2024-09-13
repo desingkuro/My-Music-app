@@ -1,7 +1,7 @@
   import { Component, OnInit } from '@angular/core';
   import { BtnRedesComponent } from '../../../components/btn-redes.component';
   import { SpotifyService } from '../../../service/spotify/spotify.component';
-  import { ActivatedRoute } from '@angular/router';
+  import { ActivatedRoute, Router } from '@angular/router';
 
   @Component({
     selector: 'app-login',
@@ -10,14 +10,14 @@
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
   })
-  export default class LoginComponent {
+  export default class LoginComponent implements OnInit{
 
     user = {
       email:'',
       password:''
     }
 
-    constructor(private activateRouter: ActivatedRoute, private spotifyService: SpotifyService){}
+    constructor(private activateRouter: ActivatedRoute, private spotifyService: SpotifyService, private router: Router){}
     
     login():void{
       this.spotifyService.login();
@@ -44,9 +44,22 @@
       if (this.user.email && this.user.password) {
         console.log(this.user.email);
         console.log(this.user.password);
+        this.spotifyService.loginUser(this.user.email,this.user.password);
       } else {
         console.error('Email o contraseña no pueden estar vacíos');
       }
     }
+
+    ngOnInit(): void {
+      this.activateRouter.queryParams.subscribe((params) => {
+        const code = params['code'];
+        if (code) {
+          console.log('Authorization code:', code);
+        } else {
+          
+        }
+      });
+    }
+    
 
   }
