@@ -13,18 +13,4 @@ import { SpotifyService } from './service/spotify/spotify.component';
 
 export class AppComponent {
   title = 'my-music-app';
-  constructor(private activateRouter: ActivatedRoute, private spotifyService: SpotifyService){}
-
-  ngOnInit():void{
-    this.activateRouter.queryParams.subscribe(params=>{
-      const code = params['code'];
-      if(code){
-        this.spotifyService.getToken(code).subscribe(response=>{
-          console.log('Token',response.acces_token);
-          const token = JSON.stringify(response.acces_token);
-          localStorage.setItem('token',token);
-        })
-      }
-    })
-  }
 }

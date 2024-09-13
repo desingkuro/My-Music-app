@@ -14,7 +14,7 @@ export const AuthGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:Rou
   if (spotifyService.isAuthenticated()) {
     return true;
   } else {
-    router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    router.navigate(['/init'], { queryParams: { returnUrl: state.url } });
     return false;
   }
 };
