@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.getPlaylistsUser();
-    this.getMusicList();
+    //this.getMusicList();
   }
 
   async getPlaylistsUser() {

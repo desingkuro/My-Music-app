@@ -188,7 +188,7 @@ export class SpotifyService implements OnInit {
       const data = await response.json();
       return data.tracks;
     } catch (error) {
-      console.error('Error al obtener las canciones de la playlist:', error);
+      console.error('Error al obtener las canciones:', error);
       return [];
     }
   }
