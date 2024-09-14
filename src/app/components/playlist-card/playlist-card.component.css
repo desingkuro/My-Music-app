@@ -1,0 +1,29 @@
+.card{
+    height: 70px;
+    width: 100%;
+    min-width: 300px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+.card:hover{
+    background: #353535;
+}
+.card>picture{
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    >img{
+        border-radius: 5px;
+        height: 50px;
+        width: 50x;
+        background-color: black;
+    }
+}

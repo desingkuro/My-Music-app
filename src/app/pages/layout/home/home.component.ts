@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { StateService } from '../../../service/state/state.service';
 import { SpotifyService } from '../../../service/spotify/spotify.component';
+import { PlaylistCardComponent } from '../../../components/playlist-card/playlist-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [PlaylistCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BtnRedesComponent } from '../../../components/btn-redes.component';
+
 import { SpotifyService } from '../../../service/spotify/spotify.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BtnRedesComponent } from '../../../components/btn-redes/btn-redes.component';
 
 @Component({
   selector: 'app-login',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { BtnRedesComponent } from '../../../components/btn-redes.component';
+import { BtnRedesComponent } from '../../../components/btn-redes/btn-redes.component';
+
 
 @Component({
   selector: 'app-register',
