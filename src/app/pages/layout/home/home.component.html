@@ -73,14 +73,14 @@
         </div>
       </header>
       <main [className]="'container-playLists'">
-        <p>{{ list }}</p>
         @if (playLists.length > 0) { @for (playlist of playLists; track
         playlist) {
         <app-playlist-card
           [playlist]="{
             name: playlist.name,
             imagen: playlist.images[2].url,
-            user: currentState.display_name
+            user: currentState.display_name,
+            id: playlist.id
           }"
         />
         } }@else {
@@ -93,10 +93,15 @@
         <h2>{{ "Playlist " + playLists[0].name }}</h2>
       </header>
       <div [className]="'section-main-container'">
-        <div>
-          <img src="spotifyLogo.png" alt="" />
-          <p>hola bienvenido</p>
-        </div>
+        @for (listmusic of listMusic; track listmusic.id) {
+        <app-card-song
+          [infoSong]="{
+            name: listmusic.name,
+            img: listmusic.album.images[0].url,
+            artist: listmusic.album.artists[0].name
+          }"
+        />
+        }
       </div>
       <footer>
         <div [className]="'footer-up'">

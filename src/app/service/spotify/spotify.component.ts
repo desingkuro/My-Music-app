@@ -7,7 +7,7 @@ import { StateService } from '../state/state.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SpotifyService implements OnInit{
+export class SpotifyService implements OnInit {
   private clientId = 'c208eac582fc4812908d6568b873bfd7';
   private clientSecret = '6659f7683ac64edf80eb530cc1106ebb';
   private token: string = '';
@@ -15,14 +15,18 @@ export class SpotifyService implements OnInit{
   private tokenUrl = 'https://accounts.spotify.com/api/token';
   private redirectUri = 'http://localhost:4200/callback';
   private accessToken = '';
-  private playListLicona = '3j6Y8RRVx55Ycgg8gmXJZY?si=ff2c722213b84fc2'
+  private playListLicona = '3j6Y8RRVx55Ycgg8gmXJZY?si=ff2c722213b84fc2';
 
-  state:any;
+  state: any;
 
-  constructor(private http: HttpClient, private router: Router, private stateService: StateService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private stateService: StateService
+  ) {}
 
-  ngOnInit(){
-    this.stateService.currentState.subscribe(state => this.state = state);
+  ngOnInit() {
+    this.stateService.currentState.subscribe((state) => (this.state = state));
   }
 
   login(): void {
@@ -40,7 +44,7 @@ export class SpotifyService implements OnInit{
       next: (profile: any) => {
         console.log('User profile:', profile);
         // Manejar el perfil del usuario, por ejemplo, guardarlo en el estado de la aplicación
-        localStorage.setItem('userInfo',JSON.stringify(profile))
+        localStorage.setItem('userInfo', JSON.stringify(profile));
         this.stateService.updateState(profile);
         this.router.navigate(['/home']);
       },
@@ -48,7 +52,7 @@ export class SpotifyService implements OnInit{
         console.error('Error fetching user profile:', error);
         // Manejar el error, por ejemplo, redirigir a la página de inicio de sesión
         this.router.navigate(['/login']);
-      }
+      },
     });
   }
   getUserProfile() {
@@ -104,23 +108,26 @@ export class SpotifyService implements OnInit{
     return !!localStorage.getItem('access_token');
   }
 
-  async getPlaylistTracks(playlistId: string): Promise<string[]> {
+  async getPlaylistTracks(playlistId: string): Promise<[]> {
     try {
       const token = await localStorage.getItem('access_token');
       if (!token) {
         throw new Error('Token de acceso no encontrado');
       }
-  
-      const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-        headers: {
-          'Authorization': 'Bearer ' + token
+
+      const response = await fetch(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
         }
-      });
-  
+      );
+
       if (!response.ok) {
         throw new Error('Error en la solicitud: ' + response.statusText);
       }
-  
+
       const data = await response.json();
       return data.items?.map((item: any) => item.track.name);
     } catch (error) {
@@ -128,32 +135,61 @@ export class SpotifyService implements OnInit{
       return [];
     }
   }
-  
-  async getPlatlists(id:string): Promise<[]> {
+
+  async getPlatlists(id: string): Promise<[]> {
     try {
       const token = localStorage.getItem('access_token');
       if (!token) {
         throw new Error('Token de acceso no encontrado');
       }
-  
-      const response = await fetch('https://api.spotify.com/v1/users/'+id+'/playlists', {
-        headers: {
-          'Authorization': 'Bearer ' + token
+
+      const response = await fetch(
+        'https://api.spotify.com/v1/users/' + id + '/playlists',
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
         }
-      });
-  
+      );
+
       if (!response.ok) {
         throw new Error('Error en la solicitud: ' + response.statusText);
       }
-  
+
       const data = await response.json();
       //console.log(data['items'])
-      return data['items']
+      return data['items'];
     } catch (error) {
       console.error('Error al obtener las playlists del usuario:', error);
       return [];
     }
   }
-  
-  
+
+  async getMusicRecomend(): Promise<[]> {
+    try {
+      const token = await localStorage.getItem('access_token');
+      if (!token) {
+        throw new Error('Token de acceso no encontrado');
+      }
+
+      const response = await fetch(
+        `https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+
+      const data = await response.json();
+      return data.tracks;
+    } catch (error) {
+      console.error('Error al obtener las canciones de la playlist:', error);
+      return [];
+    }
+  }
 }

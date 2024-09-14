@@ -22,6 +22,7 @@ interface User {
 export class StateService implements OnInit{
   private state = new BehaviorSubject<User | null>(null);
   currentState = this.state.asObservable();
+  private idPlaylist = new BehaviorSubject<string | null>(null);
 
   constructor() { }
 
@@ -33,7 +34,15 @@ export class StateService implements OnInit{
     }
   }
 
+  getId(): string {
+    return this.idPlaylist.getValue() || ''; // Devuelve el valor actual del BehaviorSubject o una cadena vacía si es null
+  }
+
   updateState(newState: User) {
     this.state.next(newState);
+  }
+
+  updateIdPlaylist(newId: string) {
+    this.idPlaylist.next(newId);
   }
 }

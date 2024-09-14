@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { StateService } from '../../service/state/state.service';
 
 interface Playlist{
   user:string;
   imagen:string;
   name:string;
+  id:string
 }
 
 @Component({
@@ -16,6 +18,10 @@ interface Playlist{
 
 
 export class PlaylistCardComponent {
-  @Input() playlist:Playlist = {imagen:'',name:'',user:''};
-  constructor(){}
+  @Input() playlist:Playlist = {imagen:'',name:'',user:'',id:''};
+  constructor(private stateService: StateService){}
+
+  handleClick(id:string){
+    this.stateService.updateIdPlaylist(id);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StateService } from '../../../service/state/state.service';
 import { SpotifyService } from '../../../service/spotify/spotify.component';
 import { PlaylistCardComponent } from '../../../components/playlist-card/playlist-card.component';
+import { CardSongComponent } from '../../../components/card-song/card-song.component';
 
 interface PlayList {
   collaborative: boolean;
@@ -30,7 +31,7 @@ interface PlayList {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PlaylistCardComponent],
+  imports: [PlaylistCardComponent,CardSongComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -48,7 +49,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.getPlaylistsUser();
-    //console.log(this.playLists)
+    /*console.log(this.playLists)
+    if (this.stateService.getId()!='') {
+      this.getMusicPlaylist();
+    }*/
+    this.getMusicList();
   }
 
   async getPlaylistsUser() {
@@ -57,8 +62,15 @@ export class HomeComponent implements OnInit {
   }
 
   async getMusicPlaylist(){
-    const list = await this.spotifyService.getPlaylistTracks(this.currentState.id);
+    const id = this.stateService.getId();
+    const list = await this.spotifyService.getPlaylistTracks(id);
     console.log(list);
+  }
+
+  async getMusicList(){
+    const listMusic = await this.spotifyService.getMusicRecomend();
+    console.log(listMusic);
+    this.listMusic = listMusic;
   }
 
   getData() {
