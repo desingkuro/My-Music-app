@@ -175,22 +175,26 @@
       </footer>
     </section>
   </main>
-  <footer>
-    @if (currentState) {
+  <footer [className]="'footer-principal'">
     <div>
-      <p>Nombre: {{ currentState.display_name }}</p>
-      <p>
-        Spotify URL:
-        <a [href]="currentState.external_urls.spotify" target="_blank">{{
-          currentState.external_urls.spotify
-        }}</a>
-      </p>
-      <p>ID: {{ currentState.id }}</p>
-      <p>País: {{ currentState.country }}</p>
-      <p>Email: {{ currentState.email }}</p>
     </div>
-    }@else {
-    <h1>no sale</h1>
-    }
+
+    <div [className]="'reproductor'">
+      <div [className]="'reproductor-control'">
+        <img src="random.svg" alt="random music" class="icon-player">
+        <img src="next.svg" alt="prev music" class="icon-player icon-prev">
+        <img src="pause.svg" alt="pause music" class="icon-pause">
+        <img src="next.svg" alt="next music" class="icon-player">
+        <img src="return.svg" alt="return music" class="icon-player">
+      </div>
+      <div [className]="'reproductor-line'">
+        <p>-:-</p>
+        <div></div>
+        <p>-:-</p>
+      </div>
+    </div>
+
+    <div>
+    </div>
   </footer>
 </section>
