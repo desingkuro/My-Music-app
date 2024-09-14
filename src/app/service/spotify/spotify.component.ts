@@ -128,6 +128,7 @@ export class SpotifyService implements OnInit{
       return [];
     }
   }
+  
   async getPlatlists(id:string): Promise<[]> {
     try {
       const token = localStorage.getItem('access_token');
@@ -146,7 +147,8 @@ export class SpotifyService implements OnInit{
       }
   
       const data = await response.json();
-      return data.items
+      //console.log(data['items'])
+      return data['items']
     } catch (error) {
       console.error('Error al obtener las playlists del usuario:', error);
       return [];

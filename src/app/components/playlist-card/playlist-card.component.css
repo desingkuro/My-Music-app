@@ -1,29 +1,48 @@
-.card{
-    height: 70px;
-    width: 100%;
-    min-width: 300px;
+.card {
+  height: 70px;
+  width: 457px;
+  min-width: 300px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+.card:hover {
+  background: #353535;
+}
+.card > picture {
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > img {
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    cursor: pointer;
-    transition: all ease-in-out .3s;
+    height: 50px;
+    width: 50x;
+    background-color: black;
+  }
 }
-.card:hover{
-    background: #353535;
+.card > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  > p {
+    height: 30px;
+    margin: 0%;
+  }
 }
-.card>picture{
-    width: 60px;
-    height: 60px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    >img{
-        border-radius: 5px;
-        height: 50px;
-        width: 50x;
-        background-color: black;
-    }
+.playlist-name {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.playlist-sub-name{
+    font-size: .9rem;
+    color: #b1b1b1;
 }

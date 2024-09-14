@@ -3,6 +3,30 @@ import { StateService } from '../../../service/state/state.service';
 import { SpotifyService } from '../../../service/spotify/spotify.component';
 import { PlaylistCardComponent } from '../../../components/playlist-card/playlist-card.component';
 
+interface PlayList {
+  collaborative: boolean;
+  description: string;
+  external_urls: { spotify: string };
+  href: string;
+  id: string;
+  images: { url: string }[];
+  name: string;
+  owner: {
+    display_name: string;
+    external_urls: { spotify: string };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  primary_color: string | null;
+  public: boolean;
+  snapshot_id: string;
+  tracks: { href: string; total: number };
+  type: string;
+  uri: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -11,8 +35,10 @@ import { PlaylistCardComponent } from '../../../components/playlist-card/playlis
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+
   currentState: any;
-  playLists = [];
+  listMusic: any;
+  playLists:PlayList[] = [];
 
   constructor(
     private stateService: StateService,
@@ -22,14 +48,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.getPlaylistsUser();
+    //console.log(this.playLists)
   }
 
-  getPlaylistsUser(){
-    const list = this.spotifyService.getPlatlists(this.currentState.id);
-    list.then(items => {
-      this.playLists = items;
-    });
+  async getPlaylistsUser() {
+    const list = await this.spotifyService.getPlatlists(this.currentState.id);
+    this.playLists = list;
   }
+
+  async getMusicPlaylist(){
+    const list = await this.spotifyService.getPlaylistTracks(this.currentState.id);
+    console.log(list);
+  }
+
   getData() {
     const data = localStorage.getItem('userInfo');
     if (data) {

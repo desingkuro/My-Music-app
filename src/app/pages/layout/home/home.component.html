@@ -56,7 +56,7 @@
       </button>
       <div>
         @if (currentState) {
-          <p>{{ currentState.display_name }}</p>
+        <p>{{ currentState.display_name }}</p>
         }
         <div>
           <span>k</span>
@@ -68,29 +68,124 @@
     <aside>
       <header [className]="'header-aside'">
         <div>
-          <img src="listMusic.svg" alt="icono">
+          <img src="listMusic.svg" alt="icono" />
           <p>Tu biblioteca</p>
         </div>
       </header>
       <main [className]="'container-playLists'">
-        <app-playlist-card/>
+        <p>{{ list }}</p>
+        @if (playLists.length > 0) { @for (playlist of playLists; track
+        playlist) {
+        <app-playlist-card
+          [playlist]="{
+            name: playlist.name,
+            imagen: playlist.images[2].url,
+            user: currentState.display_name
+          }"
+        />
+        } }@else {
+        <p>No hay playlist de este usuario</p>
+        }
       </main>
     </aside>
     <section [className]="'section-main'">
+      <header>
+        <h2>{{ "Playlist " + playLists[0].name }}</h2>
+      </header>
+      <div [className]="'section-main-container'">
+        <div>
+          <img src="spotifyLogo.png" alt="" />
+          <p>hola bienvenido</p>
+        </div>
+      </div>
+      <footer>
+        <div [className]="'footer-up'">
+          <div>
+            <h2>Compañía</h2>
+            <ul>
+              <li>Acerca de</li>
+              <li>Empleo</li>
+              <li>For the Record</li>
+              <li>Comunidades</li>
+            </ul>
+          </div>
 
+          <div>
+            <h2>Para artistas</h2>
+            <ul>
+              <li>Desarrolladores</li>
+              <li>Publicidad</li>
+              <li>Inversionistas</li>
+              <li>Proveedores</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Enlaces útiles</h2>
+            <ul>
+              <li>Ayuda</li>
+              <li>App móvil gratis</li>
+              <li>Planes de Spotify</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2>Planes de Spotify</h2>
+            <ul>
+              <li>Premium Individual</li>
+              <li>Premium Duo</li>
+              <li>Premium Familiar</li>
+              <li>Premium para Estudiantes</li>
+              <li>Versión gratuita</li>
+            </ul>
+          </div>
+          <div [className]="'main-container-redes'">
+            <div>
+              <img src="instagramIcon.svg" alt="instagram icono" />
+            </div>
+            <div>
+              <img src="facebook.svg" alt="facebook icono" />
+            </div>
+            <div>
+              <img src="twitterIcon.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div [className]="'footer-down'">
+          <div class="footer-down-main">
+            <a href="https://www.spotify.com/legal/">Legal</a>
+            <a href="https://www.spotify.com/privacy/"
+              >Seguridad y Centro de Privacidad</a
+            >
+            <a href="https://www.spotify.com/privacy-policy/"
+              >Política de Privacidad</a
+            >
+            <a href="https://www.spotify.com/cookies/">Cookies</a>
+            <a href="https://www.spotify.com/ads/">Sobre los anuncios</a>
+            <a href="https://www.spotify.com/accessibility/">Accesibilidad</a>
+          </div>
+          <div class="footer-down-aside">
+            <p>© 2024 Spotify AB</p>
+          </div>
+        </div>
+      </footer>
     </section>
   </main>
   <footer>
     @if (currentState) {
-      <div>
-        <p>Nombre: {{ currentState.display_name }}</p>
-        <p>Spotify URL: <a [href]="currentState.external_urls.spotify" target="_blank">{{ currentState.external_urls.spotify }}</a></p>
-        <p>ID: {{ currentState.id }}</p>
-        <p>País: {{ currentState.country }}</p>
-        <p>Email: {{ currentState.email }}</p>
-      </div>   
+    <div>
+      <p>Nombre: {{ currentState.display_name }}</p>
+      <p>
+        Spotify URL:
+        <a [href]="currentState.external_urls.spotify" target="_blank">{{
+          currentState.external_urls.spotify
+        }}</a>
+      </p>
+      <p>ID: {{ currentState.id }}</p>
+      <p>País: {{ currentState.country }}</p>
+      <p>Email: {{ currentState.email }}</p>
+    </div>
     }@else {
-      <h1>no sale</h1>
+    <h1>no sale</h1>
     }
   </footer>
 </section>

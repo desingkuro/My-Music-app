@@ -1,9 +1,9 @@
 <div [className]="'card'">
     <picture>
-        <img src="" alt="playlist">
+        <img src={{playlist.imagen}} alt="playlist">
     </picture>
     <div>
-        <p>Mi Lista nº1</p>
-        <p>playList · Kuro</p>
+        <p [className]="'playlist-name'">{{playlist.name}}</p>
+        <p [className]="'playlist-sub-name'">{{'PlayList · '+ playlist.user}} </p>
     </div>
 </div>
