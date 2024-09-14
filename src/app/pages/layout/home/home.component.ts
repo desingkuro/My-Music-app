@@ -49,10 +49,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.getPlaylistsUser();
-    /*console.log(this.playLists)
-    if (this.stateService.getId()!='') {
-      this.getMusicPlaylist();
-    }*/
     this.getMusicList();
   }
 
@@ -64,12 +60,11 @@ export class HomeComponent implements OnInit {
   async getMusicPlaylist(){
     const id = this.stateService.getId();
     const list = await this.spotifyService.getPlaylistTracks(id);
-    console.log(list);
   }
 
   async getMusicList(){
     const listMusic = await this.spotifyService.getMusicRecomend();
-    console.log(listMusic);
+    //console.log(listMusic);
     this.listMusic = listMusic;
   }
 
@@ -84,25 +79,5 @@ export class HomeComponent implements OnInit {
         (state) => (this.currentState = state)
       );
     }
-  }
-
-  updateState() {
-    const newUser = {
-      display_name: 'Kuro',
-      external_urls: {
-        spotify: 'https://open.spotify.com/user/31zosdkqjyo2ofzqdedqch46enwe',
-      },
-      href: 'https://api.spotify.com/v1/users/31zosdkqjyo2ofzqdedqch46enwe',
-      id: '31zosdkqjyo2ofzqdedqch46enwe',
-      images: [],
-      type: 'user',
-      uri: 'spotify:user:31zosdkqjyo2ofzqdedqch46enwe',
-      followers: { href: null, total: 0 },
-      country: 'CO',
-      product: 'free',
-      explicit_content: { filter_enabled: false, filter_locked: false },
-      email: 'andresmauricio745@gmail.com',
-    };
-    this.stateService.updateState(newUser);
   }
 }
