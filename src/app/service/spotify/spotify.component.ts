@@ -15,6 +15,7 @@ export class SpotifyService implements OnInit{
   private tokenUrl = 'https://accounts.spotify.com/api/token';
   private redirectUri = 'http://localhost:4200/callback';
   private accessToken = '';
+  private playListLicona = '3j6Y8RRVx55Ycgg8gmXJZY?si=ff2c722213b84fc2'
 
   state:any;
 
@@ -121,11 +122,36 @@ export class SpotifyService implements OnInit{
       }
   
       const data = await response.json();
-      return data.items.map((item: any) => item.track.name);
+      return data.items?.map((item: any) => item.track.name);
     } catch (error) {
       console.error('Error al obtener las canciones de la playlist:', error);
       return [];
     }
   }
+  async getPlatlists(id:string): Promise<[]> {
+    try {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        throw new Error('Token de acceso no encontrado');
+      }
+  
+      const response = await fetch('https://api.spotify.com/v1/users/'+id+'/playlists', {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+  
+      const data = await response.json();
+      return data.items
+    } catch (error) {
+      console.error('Error al obtener las playlists del usuario:', error);
+      return [];
+    }
+  }
+  
   
 }
