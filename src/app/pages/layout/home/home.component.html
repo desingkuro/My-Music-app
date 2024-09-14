@@ -54,9 +54,13 @@
       <button>
         <span> Cerrar Sesión </span>
       </button>
-
       <div>
-        <span>k</span>
+        @if (currentState) {
+          <p>{{ currentState.display_name }}</p>
+        }
+        <div>
+          <span>k</span>
+        </div>
       </div>
     </nav>
   </header>
@@ -64,7 +68,7 @@
     <aside>
       <header [className]="'header-aside'">
         <div>
-          <img src="" alt="icono">
+          <img src="listMusic.svg" alt="icono">
           <p>Tu biblioteca</p>
         </div>
       </header>
@@ -74,6 +78,16 @@
     </section>
   </main>
   <footer>
-
+    @if (currentState) {
+      <div>
+        <p>Nombre: {{ currentState.display_name }}</p>
+        <p>Spotify URL: <a [href]="currentState.external_urls.spotify" target="_blank">{{ currentState.external_urls.spotify }}</a></p>
+        <p>ID: {{ currentState.id }}</p>
+        <p>País: {{ currentState.country }}</p>
+        <p>Email: {{ currentState.email }}</p>
+      </div>   
+    }@else {
+      <h1>no sale</h1>
+    }
   </footer>
 </section>

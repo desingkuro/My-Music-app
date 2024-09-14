@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, generate, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { StateService } from '../state/state.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SpotifyService {
+export class SpotifyService implements OnInit{
   private clientId = 'c208eac582fc4812908d6568b873bfd7';
   private clientSecret = '6659f7683ac64edf80eb530cc1106ebb';
   private token: string = '';
@@ -15,7 +16,13 @@ export class SpotifyService {
   private redirectUri = 'http://localhost:4200/callback';
   private accessToken = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  state:any;
+
+  constructor(private http: HttpClient, private router: Router, private stateService: StateService) {}
+
+  ngOnInit(){
+    this.stateService.currentState.subscribe(state => this.state = state);
+  }
 
   login(): void {
     const scopes = 'user-read-private%20user-read-email';
@@ -32,6 +39,8 @@ export class SpotifyService {
       next: (profile: any) => {
         console.log('User profile:', profile);
         // Manejar el perfil del usuario, por ejemplo, guardarlo en el estado de la aplicación
+        localStorage.setItem('userInfo',JSON.stringify(profile))
+        this.stateService.updateState(profile);
         this.router.navigate(['/home']);
       },
       error: (error) => {
@@ -93,4 +102,30 @@ export class SpotifyService {
     // verificar si el token de autenticación está presente en el localStorage o sessionStorage
     return !!localStorage.getItem('access_token');
   }
+
+  async getPlaylistTracks(playlistId: string): Promise<string[]> {
+    try {
+      const token = await localStorage.getItem('access_token');
+      if (!token) {
+        throw new Error('Token de acceso no encontrado');
+      }
+  
+      const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+  
+      const data = await response.json();
+      return data.items.map((item: any) => item.track.name);
+    } catch (error) {
+      console.error('Error al obtener las canciones de la playlist:', error);
+      return [];
+    }
+  }
+  
 }

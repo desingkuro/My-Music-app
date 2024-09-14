@@ -138,22 +138,17 @@ form > a {
   justify-content: center;
   cursor: pointer;
   transition: all ease-in-out 0.3s;
+  border-radius: 20px;
+  width: 180px;
+  background-color: #1ed760;
 
   > span {
     font-size: 16px;
-  }
-
-  > span > svg {
-    height: 20px;
-    width: auto;
-    filter: invert(1);
+    font-weight: 800;
   }
 }
 .adminNav > button:hover {
   transform: scale(1.05);
-}
-.adminNav > button:hover span {
-  text-decoration: underline;
 }
 
 .adminNav>a{
@@ -169,6 +164,19 @@ form > a {
     }
 }
 .adminNav>div{
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    >p{
+        font-size: large;
+        font-weight: 800;
+    }
+}
+.adminNav>div>div{
     height: 50px;
     width: 50px;
     display: flex;
